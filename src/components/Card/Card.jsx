@@ -4,12 +4,17 @@ import "./Card.css";
 const Card = (props) => {
   const { movieDetails } = props;
 
+  console.log(movieDetails);
+
   return (
     <div className="card" style={{ width: "18rem" }}>
-      <img src={movieDetails.image} className="card-img-top" alt="..." />
+      <img
+        src={movieDetails.posterurl}
+        className="card-img-top"
+        alt={`Not Found`}
+      />
       <div className="card-body">
         <h5 className="card-title">{movieDetails.title}</h5>
-        <p className="card-text">{movieDetails.details}</p>
         <a href="#" className="btn btn-primary">
           View Details
         </a>
