@@ -7,11 +7,15 @@ const Card = (props) => {
   console.log(movieDetails);
 
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div
+      className="card text-dark bg-light"
+      style={{ width: "15rem", height: "10rem" }}
+    >
       <img
         src={movieDetails.posterurl}
-        className="card-img-top"
+        className="card-img-top img-fluid"
         alt={`Not Found`}
+        style={{ width: "100%", aspectRatio: "1/1" }}
       />
       <div className="card-body">
         <h5 className="card-title">{movieDetails.title}</h5>
