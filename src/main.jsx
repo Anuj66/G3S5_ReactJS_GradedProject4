@@ -1,33 +1,43 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
 import "./index.css";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
 import { Homepage } from "./pages/Homepage/Homepage";
+import data from "./data/json/data.json";
+import MoviesList from "./components/MoviesList/MoviesList";
+import MovieDetails from "./components/MovieDetails/MovieDetails";
+
+const topRatedIndianMovies = data["top-rated-india"];
+const topRatedMovies = data["top-rated-movies"];
+const upcomingMovies = data["movies-coming"];
+const moviesInTheatres = data["movies-in-theaters"];
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Homepage />,
+    element: <MoviesList data={topRatedIndianMovies} />,
   },
   {
     path: "/homepage",
-    element: <Homepage />,
+    element: <MoviesList data={topRatedIndianMovies} />,
   },
   {
     path: "/upcomingMovies",
-    element: <Homepage />,
+    element: <MoviesList data={upcomingMovies} />,
   },
   {
     path: "/moviesInTheatres",
-    element: <Homepage />,
+    element: <MoviesList data={moviesInTheatres} />,
   },
   {
     path: "/topRatedMovies",
-    element: <Homepage />,
+    element: <MoviesList data={topRatedMovies} />,
+  },
+  {
+    path: "/movieDetails/:id",
+    element: <MovieDetails data={data} />,
   },
 ]);
 
