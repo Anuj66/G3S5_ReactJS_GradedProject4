@@ -4,7 +4,6 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Footer } from "./components/Footer/Footer";
-import { Homepage } from "./pages/Homepage/Homepage";
 import data from "./data/json/data.json";
 import MoviesList from "./components/MoviesList/MoviesList";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
