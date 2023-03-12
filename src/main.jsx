@@ -12,6 +12,7 @@ const topRatedIndianMovies = data["top-rated-india"];
 const topRatedMovies = data["top-rated-movies"];
 const upcomingMovies = data["movies-coming"];
 const moviesInTheatres = data["movies-in-theaters"];
+const favourite = JSON.parse(localStorage.getItem("favourites"));
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/movieDetails/:id",
     element: <MovieDetails data={data} />,
+  },
+  {
+    path: "/favourites",
+    element: <MoviesList data={favourite} />,
   },
 ]);
 

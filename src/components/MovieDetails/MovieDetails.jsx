@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./MovieDetails.css";
 
 const MovieDetails = (props) => {
   const { data } = props;
   const { id } = useParams();
+  const [isAddedToFav, setIsAddedToFav] = useState(false);
 
   const getMovie = () => {
     let result = null;
@@ -42,7 +43,33 @@ const MovieDetails = (props) => {
   }
   let averageRating = parseFloat(sum / movie.ratings.length).toFixed(1);
 
-  console.log(movie);
+  const checkIfAddedToFav = () => {
+    let tempFav = JSON.parse(localStorage.getItem("favourites"));
+    if (!tempFav || tempFav.length === 0) {
+      return false;
+    }
+    for (const favMovie of tempFav) {
+      if (favMovie.id == movie.id) return true;
+    }
+    return false;
+  };
+
+  const addToFavourites = async () => {
+    let tempFav = JSON.parse(localStorage.getItem("favourites"));
+    if (!tempFav || tempFav.length === 0) {
+      tempFav = [];
+      tempFav.push(movie);
+      localStorage.setItem("favourites", JSON.stringify(tempFav));
+    } else {
+      tempFav.push(movie);
+      localStorage.setItem("favourites", JSON.stringify(tempFav));
+    }
+    setIsAddedToFav(checkIfAddedToFav());
+  };
+
+  useEffect(() => {
+    setIsAddedToFav(checkIfAddedToFav());
+  }, []);
 
   return (
     <div>
@@ -78,6 +105,13 @@ const MovieDetails = (props) => {
                 })}
               </p>
               <p className="card-text">Rating : {averageRating}</p>
+              <button
+                className="btn btn-primary"
+                onClick={addToFavourites}
+                disabled={isAddedToFav}
+              >
+                Add to Favourites
+              </button>
             </div>
           </div>
         </div>

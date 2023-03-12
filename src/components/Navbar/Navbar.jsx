@@ -46,6 +46,11 @@ export const Navbar = () => {
                   Top Rated Movies
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/favourites">
+                  Favourites
+                </a>
+              </li>
             </ul>
           </div>
         </div>
